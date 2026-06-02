@@ -1,0 +1,373 @@
+/* ==========================================================================
+   CONFIGURACIÓN GENERAL Y VARIABLES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-principal: #0a0a0c;
+    --bg-secundario: #121216;
+    --color-laser: #00ffcc; /* Cian neón que simula el haz de precisión */
+    --color-laser-dim: rgba(0, 255, 204, 0.3);
+    --texto-claro: #ffffff;
+    --texto-gris: #a0a0a5;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-claro);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   HEADER / NAVBAR
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(10, 10, 12, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--color-laser);
+}
+
+.btn-whatsapp-nav {
+    background: transparent;
+    color: var(--color-laser);
+    border: 2px solid var(--color-laser);
+    padding: 8px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-nav:hover {
+    background: var(--color-laser);
+    color: var(--bg-principal);
+    box-shadow: 0 0 15px var(--color-laser);
+}
+
+/* ==========================================================================
+   SECCIÓN HERO CON EFECTO LÁSER
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-principal) 70%);
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 10;
+}
+
+.hero-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--color-laser);
+    text-shadow: 0 0 20px var(--color-laser-dim);
+}
+
+.hero-content p {
+    color: var(--texto-gris);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Botones de acción */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary, .btn-cta {
+    padding: 14px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--texto-claro);
+    color: var(--bg-principal);
+}
+
+.btn-primary:hover {
+    background: var(--color-laser);
+    box-shadow: 0 0 20px var(--color-laser);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--texto-claro);
+    border: 1px solid var(--glass-border);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--texto-claro);
+    transform: translateY(-3px);
+}
+
+/* Efecto visual de línea láser cruzando la pantalla */
+.laser-beam {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-laser), transparent);
+    box-shadow: 0 0 12px var(--color-laser);
+    top: 50%;
+    left: 0;
+    animation: scanLaser 4s linear infinite;
+    z-index: 2;
+    opacity: 0.7;
+}
+
+@keyframes scanLaser {
+    0% { top: 15%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 85%; opacity: 0; }
+}
+
+/* ==========================================================================
+   SECCIÓN CATÁLOGO (TARJETAS IMPACTANTES)
+   ========================================================================== */
+.productos {
+    padding: 100px 5%;
+    background-color: var(--bg-secundario);
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--color-laser);
+    margin: 15px auto 0;
+    box-shadow: 0 0 10px var(--color-laser);
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Efecto Glassmorphism Avanzado en Tarjetas */
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 40px 30px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-laser);
+    box-shadow: 0 15px 30px rgba(0, 255, 204, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Línea de escaneo interna en la tarjeta cuando se pasa el cursor */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.05), transparent);
+    transition: all 0.6s ease;
+}
+
+.card:hover::before {
+    left: 150%;
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 255, 204, 0.1);
+    color: var(--color-laser);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--color-laser);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--texto-gris);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.price-tag {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--texto-claro);
+    border-bottom: 2px solid var(--color-laser);
+    padding-bottom: 2px;
+}
+
+/* ==========================================================================
+   LLAMADO A LA ACCIÓN (CTA FINAL)
+   ========================================================================== */
+.cta-section {
+    padding: 100px 5%;
+    background: var(--bg-principal);
+    text-align: center;
+}
+
+.cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #121216 0%, #1c1c24 100%);
+    padding: 60px 40px;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.cta-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.cta-container p {
+    color: var(--texto-gris);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.btn-cta {
+    background: #25d366; /* Verde WhatsApp oficial para el cierre de venta */
+    color: #fff;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+}
+
+.btn-cta:hover {
+    background: #20ba5a;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   FOOTER Y BOTÓN FLOTANTE
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: var(--bg-principal);
+    border-top: 1px solid var(--glass-border);
+    color: var(--texto-gris);
+    font-size: 0.85rem;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 1000;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(10deg);
+    background: #20ba5a;
+}
+
+/* ==========================================================================
+   RESPONSIVE (ADAPTACIÓN A CELULARES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.3rem; }
+    .section-title { font-size: 2rem; }
+    .navbar { padding: 15px 5%; }
+    .btn-whatsapp-nav { display: none; } /* En móvil dejamos solo el flotante abajo */
+}
